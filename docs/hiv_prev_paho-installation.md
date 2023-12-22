@@ -1,196 +1,196 @@
-# PAHO HIV Prevention Toolkit Installation Guide { #hiv-prev-paho-installation }
+# Guía de Instalación del Toolkit de Prevención de VIH en DHIS2 para OPS { #hiv-prev-paho-installation }
 
-Package Version 1.0.0
+Versión del Paquete 1.0.0
 
-System default language: English, Spanish
+Idioma predeterminado del sistema: Inglés, Español
 
-## Installation
+## Instalación
 
-Installation of the module consists of several steps:
+La instalación del módulo consta de varios pasos:
 
-1. [Preparing](#preparing-the-metadata-file) the metadata file.
-2. [Importing](#importing-metadata) the metadata file into DHIS2.
-3. [Configuring](#configuration) the imported metadata.
-4. [Adapting](#adapting-the-tracker-program) the program after being imported
+1. [Preparación](#preparando-el-archivo-de-metadatos) del archivo de metadatos.
+2. [Importación](#importando-metadatos) del archivo de metadatos en DHIS2.
+3. [Configuración](#configuración) de los metadatos importados.
+4. [Adaptación](#adaptar-el-programa) del programa después de la importación.
 
-It is recommended to first read through each section of the installation guide before starting the installation and configuration process in DHIS2. Identify applicable sections depending on the type of your import:
+Se recomienda leer primero cada sección de la guía de instalación antes de comenzar el proceso de instalación y configuración en DHIS2. Identifique las secciones aplicables según el tipo de importación:
 
-1. Import into a blank DHIS2 instance
-2. Import into a DHIS2 instance with existing metadata (No other versions of HIV Prevention tracker imported previously).
-3. Update existing/older version of the HIV Prevention tracker.
+1. Importar en una instancia en blanco de DHIS2.
+2. Importar en una instancia de DHIS2 con metadatos existentes (sin importación previa de otras versiones del rastreador de prevención del VIH).
+3. Actualizar la versión existente/anterior del rastreador de prevención del VIH.
 
-The steps outlined in this document should be tested in a test/staging DHIS2 instance and only then applied to a production environment.
+Las medidas descritas en este documento deben probarse en una instancia de DHIS2 de prueba antes de aplicarse en un entorno de producción.
 
-## Requirements
+## Requisitos
 
-In order to install the module, an administrator user account on DHIS2 is required. The procedure outlined in this document should be tested in a test/staging environment before being performed on a production instance of DHIS2.
+Para instalar el módulo, se requiere una cuenta de usuario administrador en DHIS2. El procedimiento detallado en este documento debe probarse en un entorno de prueba antes de realizarse en una instancia de producción de DHIS2.
 
-Great care should be taken to ensure that the server itself and the DHIS2 application is well secured, to restrict access to the data being collected. Details on securing a DHIS2 system is outside the scope of this document, and we refer to the [DHIS2 documentation](http://dhis2.org/documentation).
+Se debe tener mucho cuidado para asegurarse de que el servidor y la aplicación DHIS2 estén bien seguros para restringir el acceso a los datos que se recopilan. Los detalles sobre cómo asegurar un sistema DHIS2 están fuera del alcance de este documento, y remitimos a la [documentación de DHIS2](http://dhis2.org/documentation).
 
-## Preparing the metadata file
+## Preparando el archivo de metadatos
 
-**NOTE:** If you are installing the package on a new instance of DHIS2, you can skip the “Preparing the metadata file” section and move immediately to the section [Importing a metadata file into DHIS2](#importing-metadata)
+**NOTA:** Si está instalando el paquete en una nueva instancia de DHIS2, puede omitir la sección "Preparación del archivo de metadatos" y pasar directamente a la sección [Importar un archivo de metadatos en DHIS2](#importando-metadatos)
 
-While not always necessary, it can often be advantageous to make certain modifications to the metadata file before importing it into DHIS2.
+Aunque no siempre es necesario, a menudo es ventajoso hacer ciertas modificaciones al archivo de metadatos antes de importarlo a DHIS2.
 
-### Default data dimension (if applicable)
+### Dimensión de datos predeterminada (si es aplicable)
 
-In early versions of DHIS2, the UID of the default data dimension was auto-generated. Thus, while all DHIS2 instances have a default category option, data element category, category combination and category option combination, the UIDs of these defaults can be different. Later versions of DHIS2 have hardcoded UIDs for the default dimension, and these UIDs are used in the configuration packages.
+En las primeras versiones de DHIS2, la UID de la dimensión de datos predeterminada se generaba automáticamente. Por lo tanto, aunque todas las instancias de DHIS2 tienen una opción de categoría predeterminada, una categoría de elemento de datos, una combinación de categorías y una combinación de opciones de categorías predeterminadas, las UID de estos valores predeterminados pueden ser diferentes. Las versiones posteriores de DHIS2 tienen UID codificadas para la dimensión predeterminada, y estas UID se utilizan en los paquetes de configuración.
 
-To avoid conflicts when importing the metadata, it is advisable to search and replace the entire .json file for all occurrences of these default objects, replacing UIDs of the .json file with the UIDs of the database in which the file will be imported. Table 1 shows the UIDs which should be replaced, as well as the API endpoints to identify the existing UIDs.
+Para evitar conflictos al importar los metadatos, se recomienda buscar y reemplazar el archivo .json completo en todas las instancias de estos objetos predeterminados, reemplazando las UID del archivo .json con las UID de la base de datos en la que se importará el archivo. La Tabla 1 muestra las UID que deben reemplazarse, así como los puntos finales de la API para identificar las UID existentes.
 
-| Object                      | UID         | API endpoint                                              |
-|:----------------------------|:------------|:----------------------------------------------------------|
-| Category                    | GLevLNI9wkl | `../api/categories.json?filter=name:eq:default`           |
-| Category option             | xYerKDKCefk | `../api/categoryOptions.json?filter=name:eq:default`      |
-| Category combination        | bjDvmb4bfuf | `../api/categoryCombos.json?filter=name:eq:default`       |
-| Category option combination | HllvX50cXC0 | `../api/categoryOptionCombos.json?filter=name:eq:default` |
+| Objeto                               | UID         | API endpoint                                              |
+|:-------------------------------------|:------------|:----------------------------------------------------------|
+| Categoría                            | GLevLNI9wkl | `../api/categories.json?filter=name:eq:default`           |
+| Opción de Categoría                  | xYerKDKCefk | `../api/categoryOptions.json?filter=name:eq:default`      |
+| Combinación de Categorías            | bjDvmb4bfuf | `../api/categoryCombos.json?filter=name:eq:default`       |
+| Combinación de Opciones de Categoría | HllvX50cXC0 | `../api/categoryOptionCombos.json?filter=name:eq:default` |
 
-For example, if importing a configuration package into <https://play.dhis2.org/demo>, the UID of the default category option combination could be identified through <https://play.dhis2.org/demo/api/categoryOptionCombos.json?filter=name:eq:default> as bRowv6yZOF2.
+Por ejemplo, si está importando un paquete de configuración en <https://play.dhis2.org/demo>, la UID de la combinación de opciones de categoría predeterminada podría identificarse a través de <https://play.dhis2.org/demo/api/categoryOptionCombos.json?filter=name:eq:default> como bRowv6yZOF2.
 
-You could then search and replace all occurrences of HllvX50cXC0 with bRowv6yZOF2 in the .json file, as that is the ID of default in the system you are importing into. **_Note that this search and replace operation must be done with a plain text editor_**, not a word processor like Microsoft Word.
+Luego podría buscar y reemplazar todas las instancias de HllvX50cXC0 con bRowv6yZOF2 en el archivo .json, ya que es la ID predeterminada en el sistema que está importando. **_Tenga en cuenta que esta operación de búsqueda y reemplazo debe realizarse con un editor de texto plano_**, no con un procesador de texto como Microsoft Word.
 
-### Indicator types
+### Tipos de indicadores
 
-Indicator type is another type of object that can create import conflict because certain names are used in different DHIS2 databases (.e.g "Percentage"). Since Indicator types are defined simply by their factor and whether or not they are simple numbers without a denominator, they are unambiguous and can be replaced through a search and replace of the UIDs. This avoids potential import conflicts, and avoids creating duplicate indicator types. The following table shows the UIDs which could be replaced, as well as the API endpoints to identify the existing UIDs
+El tipo de indicador es otro tipo de objeto que puede generar conflictos durante la importación porque se utilizan ciertos nombres en diferentes bases de datos de DHIS2 (por ejemplo, "Porcentaje"). Dado que los tipos de indicadores se definen simplemente por su factor y si son números simples sin denominador, son inequívocos y se pueden reemplazar mediante una búsqueda y reemplazo de las UID. Esto evita conflictos de importación potenciales y evita la creación de tipos de indicadores duplicados. La siguiente tabla muestra las UID que podrían reemplazarse, así como los puntos finales de la API para identificar las UID existentes.
 
-| Object                  | UID         | API endpoint                                                               |
+| Objeto                  | UID         | API endpoint                                                               |
 |:------------------------|:------------|:---------------------------------------------------------------------------|
-| Percentage              | hmSnCXmLYwt | `../api/indicatorTypes.json?filter=number:eq:false&filter=factor:eq:100`   |
-| Rate (factor=1)         | k4RGC3sMTzO | `../api/indicatorTypes.json?filter=number:eq:false&filter=factor:eq:1`     |
-| Per 10 000              | FWTvArgP0jt | `../api/indicatorTypes.json?filter=number:eq:false&filter=factor:eq:10000` |
-| Numerator only (number) | kHy61PbChXr | `..api/indicatorTypes.json?filter=number:eq:true`                          |
+| Porcentaje              | hmSnCXmLYwt | `../api/indicatorTypes.json?filter=number:eq:false&filter=factor:eq:100`   |
+| Tasa (factor=1)         | k4RGC3sMTzO | `../api/indicatorTypes.json?filter=number:eq:false&filter=factor:eq:1`     |
+| Por 10 000              | FWTvArgP0jt | `../api/indicatorTypes.json?filter=number:eq:false&filter=factor:eq:10000` |
+| Solo numerador (número) | kHy61PbChXr | `..api/indicatorTypes.json?filter=number:eq:true`                          |
 
-### Tracked Entity Type
+### Tipo de entidad rastreada
 
-Like indicator types, you may have already existing tracked entity types in your DHIS2 database. The references to the tracked entity type should be changed to reflect what is in your system so you do not create duplicates. Table 3 shows the UIDs which could be replaced, as well as the API endpoints to identify the existing UIDs
+Al igual que los tipos de indicadores, es posible que ya tenga tipos de entidad rastreada existentes en su base de datos de DHIS2. Las referencias al tipo de entidad rastreada deben cambiarse para reflejar lo que hay en su sistema para no crear duplicados. La Tabla 3 muestra las UID que podrían reemplazarse, así como los puntos finales de la API para identificar las UID existentes.
 
-| Object | UID         | API endpoint                                           |
-|:-------|:------------|:-------------------------------------------------------|
-| Person | MCPQUTHX1Ze | `../api/trackedEntityTypes.json?filter=name:eq:Person` |
+| Objeto  | UID         | API endpoint                                           |
+|:--------|:------------|:-------------------------------------------------------|
+| Persona | MCPQUTHX1Ze | `../api/trackedEntityTypes.json?filter=name:eq:Person` |
 
-### Visualizations using Root Organisation Unit UID
+### Visualizaciones que utilizan la UID de la Unidad Organizativa Raíz
 
-Visualizations, event reports, report tables and maps that are assigned to a specific organisation unit level or organisation unit group, have a reference to the root (level 1) organisation unit. Such objects, if present in the metadata file, contain a placeholder `<OU_ROOT_UID>`. Use the search function in the .json file editor to possibly identify this placeholder and replace it with the UID of the level 1 organisation unit in the target instance.
+Las visualizaciones, informes de eventos, tablas de informes y mapas que se asignan a un nivel específico de unidad organizativa o grupo de unidades organizativas tienen una referencia a la unidad organizativa raíz (nivel 1). Dichos objetos, si están presentes en el archivo de metadatos, contienen un marcador de posición `<OU_ROOT_UID>`. Utilice la función de búsqueda en el editor de archivos .json para identificar posiblemente este marcador de posición y reemplácelo con la UID de la unidad organizativa de nivel 1 en la instancia de destino.
 
-Some visualizations and maps may contain references to organisation unit levels. Maps that consist of several map views may contain various Organisation unit level references based on the configuration of the map layer. Adjust the organisation unit level references in the metadata json file to match the organisation unit structure in the target instance before importing the metadata file.
+Algunas visualizaciones y mapas pueden contener referencias a niveles de unidades organizativas. Los mapas que constan de varias vistas de mapas pueden contener diversas referencias a niveles de unidades organizativas según la configuración de la capa de mapas. Ajuste las referencias a los niveles de unidades organizativas en el archivo json de metadatos para que coincidan con la estructura de unidades organizativas en la instancia de destino antes de importar el archivo de metadatos.
 
-### Upgrading metadata package
+### Actualización del paquete de metadatos
 
-The process of upgrading an existing package to a newer version in a working DHIS2 instance is a complex operation that has to be taken with precaution. Such process has to be run in a staging instance first, before upgrading the configuration on the production server. As metadata objects may have been removed, added or changed, it is important to ensure that:
+El proceso de actualizar un paquete existente a una versión más reciente en una instancia de DHIS2 operativa es una operación compleja que debe realizarse con precaución. Este proceso debe ejecutarse primero en una instancia de prueba antes de actualizar la configuración en el servidor de producción. Dado que los objetos de metadatos pueden haberse eliminado, agregado o modificado, es importante asegurarse de que:
 
-   - the format of existing data can be mapped and adjusted to the new configuration;
-   - the discontinued metadata objects are deleted from the instance; 
-   - The existing objects are updated;
-   - the new objects are created;
-   - assignment of users to relevant user groups is reviewed.
+   - el formato de los datos existentes se pueda mapear y ajustar a la nueva configuración;
+   - los objetos de metadatos descontinuados se eliminen de la instancia;
+   - los objetos existentes se actualicen;
+   - los nuevos objetos se creen;
+   - se revise la asignación de usuarios a grupos de usuarios relevantes.
 
-## Importing metadata
+## Importando metadatos
 
-The .json metadata file is imported through the [Import/Export](https://docs.dhis2.org/master/en/user/html/import_export.html) app of DHIS2. It is advisable to use the "dry run" feature to identify issues before attempting to do an actual import of the metadata. If "dry run" reports any issues or conflicts, see the [import conflicts](#handling-import-conflicts) section below.
+El archivo .json de metadatos se importa a través de la aplicación [Importar/Exportar](https://docs.dhis2.org/master/en/user/html/import_export.html) de DHIS2. Se recomienda utilizar la función "prueba en seco" para identificar problemas antes de intentar realizar una importación real de los metadatos. Si la importación en seco informa problemas o conflictos, consulte la [sección de conflictos de importación](#manejo-de-conflictos-de-importación) a continuación.
 
-If the "dry run"/"validate" import works without error, attempt to import the metadata. If the import succeeds without any errors, you can proceed to [configure](#configuration) the module. In some cases, import conflicts or issues are not shown during the "dry run", but appear when the actual import is attempted. In this case, the import summary will list any errors that need to be resolved.
+Si la importación en seco/validación funciona sin errores, intente importar los metadatos. Si la importación tiene éxito sin errores, puede proceder a [configurar](#configuración) el módulo. En algunos casos, los conflictos de importación o problemas no se muestran durante la "prueba en seco", sino que aparecen cuando se intenta la importación real. En este caso, el resumen de importación enumerará cualquier error que deba resolverse.
 
-### Handling import conflicts
+### Manejo de conflictos de importación
 
-> NOTE: If you are importing into a new DHIS2 instance, you will not have to worry about import conflicts, as there is nothing in the database you are importing to conflict with. Follow the instructions to import the metadata then please proceed to the “[Configuration](#configuration)” section.
+> NOTA: Si está importando en una nueva instancia de DHIS2, no tendrá que preocuparse por conflictos de importación, ya que no hay nada en la base de datos a la que está importando que pueda entrar en conflicto. Siga las instrucciones para importar los metadatos y luego continúe con la sección "[Configuración](#configuración)".
 
-There are a number of different conflicts that may occur, though the most common is that there are metadata objects in the configuration package with a name, shortname and/or code that already exists in the target database. There are a couple of alternative solutions to these problems, with different advantages and disadvantages. Which one is more appropriate will depend, for example, on the type of object for which a conflict occurs.
+Existen varios tipos de conflictos que pueden ocurrir, aunque el más común es que hay objetos de metadatos en el paquete de configuración con un nombre, un nombre corto y/o un código que ya existe en la base de datos de destino. Hay un par de soluciones alternativas para estos problemas, cada una con diferentes ventajas y desventajas. Cuál es más apropiada dependerá, por ejemplo, del tipo de objeto para el cual ocurre un conflicto.
 
-#### Alternative 1
+#### Alternativa 1
 
-Rename the existing object in your DHIS2 database for which there is a conflict. The advantage of this approach is that there is no need to modify the .json file, as changes are instead done through the user interface of DHIS2. This is likely to be less error prone. It also means that the configuration package is left as is, which can be an advantage for example when training material and documentation based on the configuration package will be used.
+Cambie el nombre del objeto existente en su base de datos DHIS2 para el cual hay un conflicto. La ventaja de este enfoque es que no es necesario modificar el archivo .json, ya que los cambios se realizan a través de la interfaz de usuario de DHIS2. Es probable que sea menos propenso a errores. También significa que el paquete de configuración se deja como está, lo que puede ser una ventaja, por ejemplo, cuando se utilizarán materiales de capacitación y documentación basados en el paquete de configuración.
 
-#### Alternative 2
+#### Alternativa 2
 
-Rename the object for which there is a conflict in the .json file. The advantage of this approach is that the existing DHIS2 metadata is left as-is. This can be a factor when there is training material or documentation such as SOPs of data dictionaries linked to the object in question, and it does not involve any risk of confusing users by modifying the metadata they are familiar with.
+Cambie el nombre del objeto para el cual hay un conflicto en el archivo .json. La ventaja de este enfoque es que los metadatos existentes de DHIS2 se mantienen como están. Esto puede ser un factor cuando hay material de capacitación o documentación, como SOP o diccionarios de datos, vinculado al objeto en cuestión, y no implica ningún riesgo de confundir a los usuarios al modificar los metadatos con los que están familiarizados.
 
-Note that for both alternative 1 and 2, the modification can be as simple as adding a small pre/post-fix to the name, to minimise the risk of confusion.
+Tenga en cuenta que tanto para la alternativa 1 como para la 2, la modificación puede ser tan simple como agregar un pequeño prefijo/sufijo al nombre, para minimizar el riesgo de confusión.
 
-#### Alternative 3
+#### Alternativa 3
 
-A third and more complicated approach is to modify the .json file to re-use existing metadata. For example, in cases where an option set already exists for a certain concept (e.g. "sex"), that option set could be removed from the .json file and all references to its UID replaced with the corresponding option set already in the database. The big advantage of this (which is not limited to the cases where there is a direct import conflict) is to avoid creating duplicate metadata in the database. There are some key considerations to make when performing this type of modification:
+Un tercer enfoque más complicado es modificar el archivo .json para reutilizar los metadatos existentes. Por ejemplo, en casos donde ya existe un conjunto de opciones para un cierto concepto (por ejemplo, "sexo"), ese conjunto de opciones podría eliminarse del archivo .json y todas las referencias a su UID reemplazarse por el conjunto de opciones correspondiente ya en la base de datos. La gran ventaja de esto (que no se limita a los casos donde hay un conflicto directo de importación) es evitar la creación de metadatos duplicados en la base de datos. Hay algunas consideraciones clave que hacer al realizar este tipo de modificación:
 
-* it requires expert knowledge of the detailed metadata structure of DHIS2
-* the approach does not work for all types of objects. In particular, certain types of objects have dependencies which are complicated to solve in this way, for example related to disaggregations.
-* future updates to the configuration package will be complicated.
+* requiere conocimientos expertos de la estructura detallada de metadatos de DHIS2
+* el enfoque no funciona para todos los tipos de objetos. En particular, ciertos tipos de objetos tienen dependencias que son complicadas de resolver de esta manera, por ejemplo, relacionadas con desgloses.
+* las actualizaciones futuras del paquete de configuración serán complicadas.
 
-## Configuration
+## Configuración
 
-Once all metadata has been successfully imported, there are a few steps that need to be taken before the module is functional.
+Una vez que se haya importado exitosamente toda la metainformación, hay algunos pasos que deben realizarse antes de que el módulo sea funcional.
 
-### Sharing
+### Compartir
 
-First, you will have to use the _Sharing_ functionality of DHIS2 to configure which users (user groups) should see the metadata and data associated with the programme as well as who can register/enter data into the program. By default, sharing has been configured for the following:
+En primer lugar, deberás utilizar la funcionalidad de _Compartir_ de DHIS2 para configurar qué usuarios (grupos de usuarios) deben ver la metainformación y los datos asociados al programa, así como quiénes pueden registrar/ingresar datos en el programa. Por defecto, el compartir se ha configurado para lo siguiente:
 
-* Tracked entity type
-* Program
-* Program stages
-* Dashboards
+* Tipo de entidad
+* Programa
+* Etapas del programa
+* Tableros
 
-A metadata package usually contains several user groups:
+Un paquete de metadatos generalmente contiene varios grupos de usuarios:
 
-* HIVp PAHO Access
-* HIVp PAHO Admin
-* HIVp PAHO Data capture
+* HIVp PAHO Acceso
+* HIVp PAHO Administrador
+* HIVp PAHO Captura de datos
 
-By default, the following is assigned to these user groups
+Por defecto, lo siguiente está asignado a estos grupos de usuarios
 
-| Object              | User Groups                             | User Groups                                      | User Groups                                         |
-|---------------------|-----------------------------------------|--------------------------------------------------|-----------------------------------------------------|
-|                     | HIVp PAHO Access                        | HIVp PAHO Admin                                  | HIVp PAHO Data capture                              |
-| Tracked entity type | Metadata : can view <br> Data: can view | Metadata : can edit and view <br> Data: can view | Metadata : can view <br> Data: can capture and view |
-| Program             | Metadata : can view <br> Data: can view | Metadata : can edit and view <br> Data: can view | Metadata : can view <br> Data: can capture and view |
-| Program Stages      | Metadata : can view <br> Data: can view | Metadata : can edit and view <br> Data: can view | Metadata : can view <br> Data: can capture and view |
-| Dashboards          | Metadata : can view <br> Data: can view | Metadata : can edit and view <br> Data: can view | Metadata : can view <br> Data: can view             |
+| Objeto              | Grupos de Usuarios                         | Grupos de Usuarios                                  | Grupos de Usuarios                                    |
+|---------------------|--------------------------------------------|-----------------------------------------------------|-------------------------------------------------------|
+|                     | HIVp PAHO Acceso                           | HIVp PAHO Administrador                             | Captura de Datos HIVp PAHO                            |
+| Tipo de entidad     | Metadatos: puede ver <br> Datos: puede ver | Metadatos: puede editar y ver <br> Datos: puede ver | Metadatos: puede ver <br> Datos: puede capturar y ver |
+| Programa            | Metadatos: puede ver <br> Datos: puede ver | Metadatos: puede editar y ver <br> Datos: puede ver | Metadatos: puede ver <br> Datos: puede capturar y ver |
+| Etapas del programa | Metadatos: puede ver <br> Datos: puede ver | Metadatos: puede editar y ver <br> Datos: puede ver | Metadatos: puede ver <br> Datos: puede capturar y ver |
+| Tableros            | Metadatos: puede ver <br> Datos: puede ver | Metadatos: puede editar y ver <br> Datos: puede ver | Metadatos: puede ver <br> Datos: puede ver            |
 
-You will want to assign your users to the appropriate user group based on their role within the system. You may want to enable sharing for other objects in the package depending on your set up. Refer to the [DHIS2 Documentation](https://docs.dhis2.org/master/en/dhis2_user_manual_en/about-sharing-of-objects.html) for more information on configuring sharing.
+Deberás asignar tus usuarios al grupo de usuarios apropiado según su rol dentro del sistema. Puede que desees habilitar el compartir para otros objetos en el paquete dependiendo de tu configuración. Consulta la [Documentación de DHIS2](https://docs.dhis2.org/master/en/dhis2_user_manual_en/about-sharing-of-objects.html) para obtener más información sobre la configuración de compartir.
 
-### User Roles
+### Roles de Usuario
 
-Users will need user roles in order to engage with the various applications within DHIS2. The following minimum roles are recommended:
+Los usuarios necesitarán roles de usuario para interactuar con las diversas aplicaciones dentro de DHIS2. Se recomiendan los siguientes roles mínimos:
 
-1. Tracker data analysis : Can see event analytics and access dashboards, event reports, event visualizer, data visualizer, pivot tables, reports and maps.
-2. Tracker data capture : Can add data values, update tracked entities, search tracked entities across org units and access tracker capture
+1. Análisis de datos de rastreo: Puede ver análisis de eventos y acceder a tableros, informes de eventos, visualizador de eventos, visualizador de datos, tablas dinámicas, informes y mapas de eventos.
+2. Captura de datos de rastreo: Puede agregar valores de datos, actualizar entidades rastreadas, buscar entidades rastreadas en unidades organizativas y acceder a la captura de rastreo.
 
-Refer to the [DHIS2 Documentation](http://dhis2.org/documentation) for more information on configuring user roles.
+Consulta la [Documentación de DHIS2](http://dhis2.org/documentation) para obtener más información sobre la configuración de roles de usuario.
 
-### Organisation Units
+### Unidades Organizativas
 
-You must assign the program to organisation units within your own hierarchy in order to be able to see the program in tracker capture.
+Debes asignar el programa a las unidades organizativas dentro de tu propia jerarquía para poder ver el programa en la captura de rastreo.
 
-### Duplicated metadata
+### Metadatos Duplicados
 
-> **NOTE**
+> **NOTA**
 >
-> This section only applies if you are importing into a DHIS2 database in which there is already meta-data present. If you are working with a new DHIS2 instance, please skip this section and go to [Adapting the tracker program](#adapting-the-tracker-program).
-> If you are using any third party applications that rely on the current metadata, please take into account that this update could break them”
+> Esta sección solo se aplica si estás importando en una base de datos DHIS2 en la que ya hay metadatos presentes. Si estás trabajando con una nueva instancia de DHIS2, por favor omite esta sección y ve a [Adaptar el programa de rastreo](#adaptar-el-programa).
+> Si estás utilizando aplicaciones de terceros que dependen de los metadatos actuales, ten en cuenta que esta actualización podría afectarlas.
 
-Even when metadata has been successfully imported without any import conflicts, there can be duplicates in the metadata - data elements, tracked entity attributes or option sets that already exist. As was noted in the section above on resolving conflict, an important issue to keep in mind is that decisions on making changes to the metadata in DHIS2 also needs to take into account other documents and resources that are in different ways associated with both the existing metadata, and the metadata that has been imported through the configuration package. Resolving duplicates is thus not only a matter of "cleaning up the database", but also making sure that this is done without, for example, breaking potential integrating with other systems, the possibility to use training material, breaking SOPs etc. This will very much be context-dependent.
+Incluso cuando la metainformación se ha importado con éxito sin conflictos de importación, puede haber duplicados en la metainformación: elementos de datos, atributos de entidad rastreada o conjuntos de opciones que ya existen. Como se señaló en la sección anterior sobre la resolución de conflictos, un problema importante a tener en cuenta es que las decisiones sobre realizar cambios en la metainformación en DHIS2 también deben tener en cuenta otros documentos y recursos que están de diferentes maneras asociados tanto con la metainformación existente como con la metainformación que se ha importado a través del paquete de configuración. La resolución de duplicados no es solo una cuestión de "limpiar la base de datos", sino también asegurarse de que esto se haga sin romper posibles integraciones con otros sistemas, la posibilidad de utilizar material de capacitación, romper procedimientos operativos estándar, etc. Esto dependerá en gran medida del contexto.
 
-### [CONFIG] metadata
+### [CONFIG] Metadatos
 
-The following metadata needs to be configured after import.
+Los siguientes metadatos deben configurarse después de la importación.
 
-| Metadata Type | Name                                                      |
-|---------------|-----------------------------------------------------------|
-| Option Sets   | [CONFIG]_HIVp_PAHO - PrEP reason discontinuation          |
-| Option Sets   | [CONFIG]_HIVp_PAHO - PrEP adverse effect                  |
-| Option Sets   | [CONFIG]_HIVp_PAHO - STI: syndromic treatment             |
-| Option Sets   | [CONFIG]_HIVp_PAHO - STI: Syphilis treatment              |
-| Option Sets   | [CONFIG]_HIVp_PAHO - STI: Neisseria gonorrhoeae treatment |
-| Option Sets   | [CONFIG]_HIVp_PAHO - STI: Chlamydia treatment             |
-| Option Sets   | [CONFIG]_HIVp_PAHO - STI: Monkeypox treatment             |
+| Tipo de Metadato | Nombre                                                    |
+|------------------|-----------------------------------------------------------|
+| Option Sets      | [CONFIG]_HIVp_PAHO - PrEP reason discontinuation          |
+| Option Sets      | [CONFIG]_HIVp_PAHO - PrEP adverse effect                  |
+| Option Sets      | [CONFIG]_HIVp_PAHO - STI: syndromic treatment             |
+| Option Sets      | [CONFIG]_HIVp_PAHO - STI: Syphilis treatment              |
+| Option Sets      | [CONFIG]_HIVp_PAHO - STI: Neisseria gonorrhoeae treatment |
+| Option Sets      | [CONFIG]_HIVp_PAHO - STI: Chlamydia treatment             |
+| Option Sets      | [CONFIG]_HIVp_PAHO - STI: Monkeypox treatment             |
 
-**Please be aware that this might have an impact on Program Indicators and Program Rules.**
+**Ten en cuenta que esto podría afectar a los Indicadores del Programa y las Reglas del Programa.**
 
-## Adapting the tracker program
+## Adaptar el Programa
 
-Once the programme has been imported, you might want to make certain modifications to the programme. Examples of local adaptations that _could_ be made include:
+Una vez que el programa haya sido importado, es posible que desees realizar ciertas modificaciones al programa. Ejemplos de adaptaciones locales que _podrían_ realizarse incluyen:
 
-* Adding additional variables to the form.
-* Adapting data element/option names according to national conventions.
-* Adding translations to variables and/or the data entry form.
-* Modifying program indicators based on local case definitions.
+* Agregar variables adicionales al formulario.
+* Adaptar nombres de elementos de datos/opciones según las convenciones nacionales.
+* Agregar traducciones a variables y/o al formulario de entrada de datos.
+* Modificar indicadores de programa basados en definiciones de casos locales.
 
-However, it is strongly recommended to take great caution if you decide to change or remove any of the included form/metadata. There is a danger that modifications could break functionality, for example program rules and program indicators.
+Sin embargo, se recomienda encarecidamente tener mucho cuidado si decides cambiar o eliminar alguno de los metadatos incluidos. Existe el peligro de que las modificaciones puedan afectar la funcionalidad, por ejemplo, las reglas del programa e indicadores del programa.
