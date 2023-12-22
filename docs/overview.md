@@ -1,4 +1,4 @@
-# HIV Case Surveillance
+# HIV Prevention PAHO
 
 ## Release Note
 
@@ -10,7 +10,7 @@
 
 ## Installation
 
-[Installation Guide](#hiv-cs-installation)
+[Installation Guide](#hiv-prev-paho-installation)
 
 ## Metadata Reference
 
