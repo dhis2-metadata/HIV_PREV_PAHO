@@ -1,7 +1,4 @@
-
-PAHO HIV Prevention Toolkit - Documento de Diseño del Sistema
-
-# Toolkit de Prevención de VIH en DHIS2 para OPS - Documento de Diseño del Sistema
+# Toolkit de Prevención de VIH en DHIS2 para OPS - Documento de Diseño del Sistema  { #hiv-prev-paho-design }
 
 ## Antecedentes y Propósito
 El Toolkit de Prevención de VIH en DHIS2 para OPS es un sistema de seguimiento de prevención de VIH basado en DHIS2 Tracker que permite rastrear los eventos de prevención que experimenta un individuo.
@@ -54,22 +51,22 @@ A continuación describimos la configuración de atributos, etapas y elementos d
 ## Inscripción
 Los siguientes atributos son parte de la inscripción. Todos deberán ser adaptados a las necesidades nacionales.
 
-| Buscable | Nombre (Español)                                | Nombre (Inglés)  | UiD               | Tipo de valor           | Set de opciones (si corresponde)   |
-| -------- | --------------------------------------------- | ----------------- | ----------------- | ------------------------ | ---------------------------------- |
-| N/A      | Fecha de Inscripción                          | Registration Date | mD02n8fmxDF       | DATE                     |                                    |
-| Si       | Apellidos                                      | Family Name      | ENRjVGxVL6l       | TEXT                     |                                    |
-| Si       | Nombres                                        | Given Name       | sB1IHYu2xQT       | TEXT                     |                                    |
-| No       | Apodo                                          | Social Name (if applicable) | seG9DORjRe3       | TEXT  |                                    |
-| Si       | Fecha de Nacimiento                            | Date of Birth    | NI0QRzJvQ0k       | DATE                     |                                    |
-| NO       | Fecha de nacimiento desconocida               | Date of Birth Unknown | EzjzXNnQk0Z | TRUE_ONLY                |                                    |
-| NO       | Edad en Meses                                 | Age - Months     | o5VnbR7haRe       | INTEGER_ZERO_OR_POSITIVE |                                    |
-| NO       | Edad en años                                  | Age - Years      | lAsTkcV1fvw       | INTEGER_ZERO_OR_POSITIVE |                                    |
-| NO       | Dirección                                      | Address (current)| A6Hb0Kvg4vb       | TEXT                     |                                    |
-| NO       | Teléfono de contacto local                     | Contact Phone Number (local)| fctSQp5nAYl | PHONE_NUMBER             |                                    |
-| NO       | Nacionalidad                                   | Nationality      | pt8XLGpf37J       | TEXT                     | ISO Country list                   |
-| NO       | Tipo de documento                              | Type of Document | cRBWATXTrTM       | TEXT                     | NATIONAL_ID, PASSPORT, WORK_PERMIT, REFUGE_CARD, APPLICATION_FOR_REFUGE, OTHER |
-| NO       | Especifique otro tipo de documento             | Specify Other Type of Document | Ybj656vEDVT  | TEXT              |                                    |
-| NO       | Número de documento                            | Document Number  | QmI1CtwM8Pp       | TEXT                     |                                    |
+| Buscable | Nombre (Español)                   | Nombre (Inglés)                | UiD         | Tipo de valor            | Set de opciones (si corresponde)                                               |
+|----------|------------------------------------|--------------------------------|-------------|--------------------------|--------------------------------------------------------------------------------|
+| N/A      | Fecha de Inscripción               | Registration Date              | mD02n8fmxDF | DATE                     |                                                                                |
+| Si       | Apellidos                          | Family Name                    | ENRjVGxVL6l | TEXT                     |                                                                                |
+| Si       | Nombres                            | Given Name                     | sB1IHYu2xQT | TEXT                     |                                                                                |
+| No       | Apodo                              | Social Name (if applicable)    | seG9DORjRe3 | TEXT                     |                                                                                |
+| Si       | Fecha de Nacimiento                | Date of Birth                  | NI0QRzJvQ0k | DATE                     |                                                                                |
+| NO       | Fecha de nacimiento desconocida    | Date of Birth Unknown          | EzjzXNnQk0Z | TRUE_ONLY                |                                                                                |
+| NO       | Edad en Meses                      | Age - Months                   | o5VnbR7haRe | INTEGER_ZERO_OR_POSITIVE |                                                                                |
+| NO       | Edad en años                       | Age - Years                    | lAsTkcV1fvw | INTEGER_ZERO_OR_POSITIVE |                                                                                |
+| NO       | Dirección                          | Address (current)              | A6Hb0Kvg4vb | TEXT                     |                                                                                |
+| NO       | Teléfono de contacto local         | Contact Phone Number (local)   | fctSQp5nAYl | PHONE_NUMBER             |                                                                                |
+| NO       | Nacionalidad                       | Nationality                    | pt8XLGpf37J | TEXT                     | ISO Country list                                                               |
+| NO       | Tipo de documento                  | Type of Document               | cRBWATXTrTM | TEXT                     | NATIONAL_ID, PASSPORT, WORK_PERMIT, REFUGE_CARD, APPLICATION_FOR_REFUGE, OTHER |
+| NO       | Especifique otro tipo de documento | Specify Other Type of Document | Ybj656vEDVT | TEXT                     |                                                                                |
+| NO       | Número de documento                | Document Number                | QmI1CtwM8Pp | TEXT                     |                                                                                |
 
 ## Etapa de identificación de población
 
@@ -80,21 +77,21 @@ Esta etapa incluye reglas de programa preconfiguradas con un algoritmo para dete
 
 
 
-| Nombre en Español                                     | Name                                              | UiD               | Tipo de valor           | Set de opciones (si aplica)   | Requerido |
-| ----------------------------------------------------- | ------------------------------------------------- | ----------------- | ------------------------ | ---------------------------- | --------- |
-| Fecha del Evento                                     | Event Date                                        | aGPndpKweJK       | DATE                     | TRUE                         | TRUE      |
-| Identidad de Género Asignada al Nacer (HIVp_PAHO)    | HIVp_PAHO - Sex assigned at birth                | SAUZrNggPyE       | TEXT                     | MALE, FEMALE, INTERSEX, OTHER, NO_ANSWER | FALSE     |
-| Especifique otra identidad de género asignada al nacer (HIVp_PAHO) | HIVp_PAHO - Specify other sex assigned at birth | XShuYnYsM9u       | TEXT                     |                              | FALSE     |
-| Con quién ha tenido relaciones sexuales (HIVp_PAHO)   | HIVp_PAHO - 1. Who have you had sexual relations with? | PVIx3CbZFKJ       | TEXT                     | WOMEN, MEN, TRANSGENDER_WOMEN, TRANSGENDER_MEN, OTHER, NO_ANSWER | FALSE |
-| Con quién ha tenido relaciones sexuales (HIVp_PAHO)   | HIVp_PAHO - 2. Who have you had sexual relations with? | jZ49hY46U3A       | TEXT                     | WOMEN, MEN, TRANSGENDER_WOMEN, TRANSGENDER_MEN, OTHER, NO_ANSWER | FALSE |
-| Con quién ha tenido relaciones sexuales (HIVp_PAHO)   | HIVp_PAHO - 3. Who have you had sexual relations with? | POIfQreeyow       | TEXT                     | WOMEN, MEN, TRANSGENDER_WOMEN, TRANSGENDER_MEN, OTHER, NO_ANSWER | FALSE |
-| Con quién ha tenido relaciones sexuales (HIVp_PAHO)   | HIVp_PAHO - 4. Who have you had sexual relations with? | TQUrEv4MKuQ       | TEXT                     | WOMEN, MEN, TRANSGENDER_WOMEN, TRANSGENDER_MEN, OTHER, NO_ANSWER | FALSE |
-| Con quién ha tenido relaciones sexuales (HIVp_PAHO)   | HIVp_PAHO - 5. Who have you had sexual relations with? | IPDwJEIYrTF       | TEXT                     | WOMEN, MEN, TRANSGENDER_WOMEN, TRANSGENDER_MEN, OTHER, NO_ANSWER | FALSE |
-| Especifique otro grupo de población con el que ha tenido relaciones sexuales (HIVp_PAHO) | HIVp_PAHO - Specify other group of population you have had sexual relations | AlS67CUzJh3 | TEXT | | FALSE |
-| Intercambio de sexo por dinero o bienes en los últimos 12 meses (HIVp_PAHO) | HIVp_PAHO - Exchanged sex for money or goods in the last 12 months | EEZ8qe0slpg | TEXT | YES, NO, NO_ANSWER | FALSE |
-| Compartió una aguja y/o jeringa para inyectar sustancias en los últimos 12 meses (HIVp_PAHO) | HIVp_PAHO - Shared a needle and/or syringe to inject substances in the last 12 months | ZZLPgLPzRLQ | TEXT | YES, NO, NO_ANSWER | FALSE |
-| Identidad de Género (HIVp_PAHO) | HIVp_PAHO - What is your gender identity? | MZVdlRUalzP | TEXT | MAN, WOMAN, TRANSGENDER_WOMAN, TRANSGENDER_MAN, OTHER, NO_ANSWER | FALSE |
-| Especifique otra autoidentificación (HIVp_PAHO) | HIVp_PAHO - Specify other autoidentification | yG3E2qgI7uI | TEXT | | FALSE |
+| Nombre en Español                                                                            | Name                                                                                  | UiD         | Tipo de valor | Set de opciones (si aplica)                                      | Requerido |
+|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|-------------|---------------|------------------------------------------------------------------|-----------|
+| Fecha del Evento                                                                             | Event Date                                                                            | aGPndpKweJK | DATE          | TRUE                                                             | TRUE      |
+| Identidad de Género Asignada al Nacer (HIVp_PAHO)                                            | HIVp_PAHO - Sex assigned at birth                                                     | SAUZrNggPyE | TEXT          | MALE, FEMALE, INTERSEX, OTHER, NO_ANSWER                         | FALSE     |
+| Especifique otra identidad de género asignada al nacer (HIVp_PAHO)                           | HIVp_PAHO - Specify other sex assigned at birth                                       | XShuYnYsM9u | TEXT          |                                                                  | FALSE     |
+| Con quién ha tenido relaciones sexuales (HIVp_PAHO)                                          | HIVp_PAHO - 1. Who have you had sexual relations with?                                | PVIx3CbZFKJ | TEXT          | WOMEN, MEN, TRANSGENDER_WOMEN, TRANSGENDER_MEN, OTHER, NO_ANSWER | FALSE     |
+| Con quién ha tenido relaciones sexuales (HIVp_PAHO)                                          | HIVp_PAHO - 2. Who have you had sexual relations with?                                | jZ49hY46U3A | TEXT          | WOMEN, MEN, TRANSGENDER_WOMEN, TRANSGENDER_MEN, OTHER, NO_ANSWER | FALSE     |
+| Con quién ha tenido relaciones sexuales (HIVp_PAHO)                                          | HIVp_PAHO - 3. Who have you had sexual relations with?                                | POIfQreeyow | TEXT          | WOMEN, MEN, TRANSGENDER_WOMEN, TRANSGENDER_MEN, OTHER, NO_ANSWER | FALSE     |
+| Con quién ha tenido relaciones sexuales (HIVp_PAHO)                                          | HIVp_PAHO - 4. Who have you had sexual relations with?                                | TQUrEv4MKuQ | TEXT          | WOMEN, MEN, TRANSGENDER_WOMEN, TRANSGENDER_MEN, OTHER, NO_ANSWER | FALSE     |
+| Con quién ha tenido relaciones sexuales (HIVp_PAHO)                                          | HIVp_PAHO - 5. Who have you had sexual relations with?                                | IPDwJEIYrTF | TEXT          | WOMEN, MEN, TRANSGENDER_WOMEN, TRANSGENDER_MEN, OTHER, NO_ANSWER | FALSE     |
+| Especifique otro grupo de población con el que ha tenido relaciones sexuales (HIVp_PAHO)     | HIVp_PAHO - Specify other group of population you have had sexual relations           | AlS67CUzJh3 | TEXT          |                                                                  | FALSE     |
+| Intercambio de sexo por dinero o bienes en los últimos 12 meses (HIVp_PAHO)                  | HIVp_PAHO - Exchanged sex for money or goods in the last 12 months                    | EEZ8qe0slpg | TEXT          | YES, NO, NO_ANSWER                                               | FALSE     |
+| Compartió una aguja y/o jeringa para inyectar sustancias en los últimos 12 meses (HIVp_PAHO) | HIVp_PAHO - Shared a needle and/or syringe to inject substances in the last 12 months | ZZLPgLPzRLQ | TEXT          | YES, NO, NO_ANSWER                                               | FALSE     |
+| Identidad de Género (HIVp_PAHO)                                                              | HIVp_PAHO - What is your gender identity?                                             | MZVdlRUalzP | TEXT          | MAN, WOMAN, TRANSGENDER_WOMAN, TRANSGENDER_MAN, OTHER, NO_ANSWER | FALSE     |
+| Especifique otra autoidentificación (HIVp_PAHO)                                              | HIVp_PAHO - Specify other autoidentification                                          | yG3E2qgI7uI | TEXT          |                                                                  | FALSE     |
 
 ###  Visitas 
 
@@ -128,15 +125,15 @@ En esta sección se determina el tipo de riesgo al que potencialmente estaría e
 ![Visita](resources/images/image13.png)
 
 
-| Nombre de formulario en español | NAME | Short Name | Code | Form Name | Option Set | UID |
-|----------------------------------|------|------------|------|-----------|------------|-----|
-| Diagnóstico, tratamiento o síntomas de una ITS en los últimos seis meses | HIVp_PAHO - RA: Diagnosed, treated or had symptoms of an STI in the last six months | RA: Diagnosed, treated or had symptoms of an STI | HIV_PREV_PAHO_RA_STI | Diagnosed, treated or had symptoms of an STI in the last six months | TEXT | HIVp_PAHO - Yes/No/No answer | oDvki3T6yBg |
-| Inyección de sustancias con una aguja/jeringa compartida en los últimos seis meses | HIVp_PAHO - RA: Injected subs with a shared needle/syringe in the last six months | RA: Injected subs with a shared needle/syringe | HIV_PREV_PAHO_RA_SHARED_NEEDLE_SYRINGE | Injected subs with a shared needle/syringe in the last six months | TEXT | HIVp_PAHO - Yes/No/No answer | LWZxHITxCh8 |
-| Solicitud de receta para PEP en los últimos seis meses | HIVp_PAHO - RA: Requested a prescription for PEP in the last six months | RA: Requested a prescription for PEP | HIV_PREV_PAHO_RA_PEP | Requested a prescription for PEP in the last six months | TEXT | HIVp_PAHO - Yes/No/No answer | LGOlnBw96nA |
-| Solicitud de receta para PrEP en los últimos seis meses | HIVp_PAHO - RA: Requested a prescription for PrEP in the last six months | RA: Requested a prescription for PrEP | HIV_PREV_PAHO_PI_PREP | Requested a prescription for PrEP in the last six months | TEXT | HIVp_PAHO - Yes/No/No answer | pbuFhE8ScFU |
-| Pareja sexual seropositiva con carga viral desconocida o no controlada (es decir, no indetectable) | HIVp_PAHO - RA: Sex partner who is HIV-positive with unknown or uncontrolled viral load (i.e. not undetectable) | RA: Sex partner HIV-positive (no undetectable VL) | HIV_PREV_PAHO_RA_HIV_POS_PARTNER | Sex partner who is HIV-positive with unknown or uncontrolled viral load (i.e. not undetectable) | Partners of HIV-positive people with undetectable viral load should not be considered as high risk since HIV-positive people with undetectable viral load do not transmit the virus to their partners. | TEXT | HIVp_PAHO - Yes/No/No answer | AmcpSTc4miC |
-| Pareja sexual con más de uno de los factores de riesgo | HIVp_PAHO - RA: Sex partner with more than one of the risk factors | RA: Sex partner more than one of the risk factors | HIV_PREV_PAHO_RA_PARTNER_MULTI_RISK | Sex partner with more than one of the risk factors | TEXT | HIVp_PAHO - Yes/No/No answer | RdB665x0qg9 |
-| Sexo sin condón con más de una pareja en los últimos seis meses | HIVp_PAHO - RA: Sex without condom with more than one partner in the last six months | RA: Sex without condom with more than one partner | HIV_PREV_PAHO_RA_NO_CONDOM_PLURI_PARTNER | Sex without condom with more than one partner in the last six months | TEXT | HIVp_PAHO - Yes/No/No answer | BKOKv6jqkXb |
+| Nombre de formulario en español                                                                    | NAME                                                                                                            | Short Name                                        | Code                                     | Form Name                                                                                       | Option Set                                                                                                                                                                                             | UID                          |
+|----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------|------------------------------------------|-------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|
+| Diagnóstico, tratamiento o síntomas de una ITS en los últimos seis meses                           | HIVp_PAHO - RA: Diagnosed, treated or had symptoms of an STI in the last six months                             | RA: Diagnosed, treated or had symptoms of an STI  | HIV_PREV_PAHO_RA_STI                     | Diagnosed, treated or had symptoms of an STI in the last six months                             | TEXT                                                                                                                                                                                                   | HIVp_PAHO - Yes/No/No answer | oDvki3T6yBg |
+| Inyección de sustancias con una aguja/jeringa compartida en los últimos seis meses                 | HIVp_PAHO - RA: Injected subs with a shared needle/syringe in the last six months                               | RA: Injected subs with a shared needle/syringe    | HIV_PREV_PAHO_RA_SHARED_NEEDLE_SYRINGE   | Injected subs with a shared needle/syringe in the last six months                               | TEXT                                                                                                                                                                                                   | HIVp_PAHO - Yes/No/No answer | LWZxHITxCh8 |
+| Solicitud de receta para PEP en los últimos seis meses                                             | HIVp_PAHO - RA: Requested a prescription for PEP in the last six months                                         | RA: Requested a prescription for PEP              | HIV_PREV_PAHO_RA_PEP                     | Requested a prescription for PEP in the last six months                                         | TEXT                                                                                                                                                                                                   | HIVp_PAHO - Yes/No/No answer | LGOlnBw96nA |
+| Solicitud de receta para PrEP en los últimos seis meses                                            | HIVp_PAHO - RA: Requested a prescription for PrEP in the last six months                                        | RA: Requested a prescription for PrEP             | HIV_PREV_PAHO_PI_PREP                    | Requested a prescription for PrEP in the last six months                                        | TEXT                                                                                                                                                                                                   | HIVp_PAHO - Yes/No/No answer | pbuFhE8ScFU |
+| Pareja sexual seropositiva con carga viral desconocida o no controlada (es decir, no indetectable) | HIVp_PAHO - RA: Sex partner who is HIV-positive with unknown or uncontrolled viral load (i.e. not undetectable) | RA: Sex partner HIV-positive (no undetectable VL) | HIV_PREV_PAHO_RA_HIV_POS_PARTNER         | Sex partner who is HIV-positive with unknown or uncontrolled viral load (i.e. not undetectable) | Partners of HIV-positive people with undetectable viral load should not be considered as high risk since HIV-positive people with undetectable viral load do not transmit the virus to their partners. | TEXT                         | HIVp_PAHO - Yes/No/No answer | AmcpSTc4miC |
+| Pareja sexual con más de uno de los factores de riesgo                                             | HIVp_PAHO - RA: Sex partner with more than one of the risk factors                                              | RA: Sex partner more than one of the risk factors | HIV_PREV_PAHO_RA_PARTNER_MULTI_RISK      | Sex partner with more than one of the risk factors                                              | TEXT                                                                                                                                                                                                   | HIVp_PAHO - Yes/No/No answer | RdB665x0qg9 |
+| Sexo sin condón con más de una pareja en los últimos seis meses                                    | HIVp_PAHO - RA: Sex without condom with more than one partner in the last six months                            | RA: Sex without condom with more than one partner | HIV_PREV_PAHO_RA_NO_CONDOM_PLURI_PARTNER | Sex without condom with more than one partner in the last six months                            | TEXT                                                                                                                                                                                                   | HIVp_PAHO - Yes/No/No answer | BKOKv6jqkXb |
 
 **Condones y lubricantes:**
 Registra si condones o lubricantes fueron distribuídos durante la visita. Despliega la opcion de seleccionar la cantidad si la respuesta es “si”.
@@ -144,12 +141,12 @@ Registra si condones o lubricantes fueron distribuídos durante la visita. Despl
 ![Visita](resources/images/image8.png)
 
 
-| Nombre de formato en Español | Name | UID |
-|------------------------------|------|-----|
-| Condones Distribuidos | HIVp_PAHO - Condoms distributed | tZ1V7bbAkPv |
-| Tipo de condones distribuido | HIVp_PAHO - Type of condoms distributed | bXz3CHo6VPt |
-| Cantidad de condones distribuidos | HIVp_PAHO - Ammount of condoms distributed | iWehm0yBubk |
-| Lubricantes distribuidos | HIVp_PAHO - Lubricants distributed | UDyNotL2waK |
+| Nombre de formato en Español         | Name                                          | UID         |
+|--------------------------------------|-----------------------------------------------|-------------|
+| Condones Distribuidos                | HIVp_PAHO - Condoms distributed               | tZ1V7bbAkPv |
+| Tipo de condones distribuido         | HIVp_PAHO - Type of condoms distributed       | bXz3CHo6VPt |
+| Cantidad de condones distribuidos    | HIVp_PAHO - Ammount of condoms distributed    | iWehm0yBubk |
+| Lubricantes distribuidos             | HIVp_PAHO - Lubricants distributed            | UDyNotL2waK |
 | Cantidad de lubricantes distribuidos | HIVp_PAHO - Ammount of lubricants distributed | dUrLoNS5JJE |
 
 
@@ -162,26 +159,26 @@ Registra los detalles de la última prueba de VIH realizada. Esta sección conti
 ![Visita](resources/images/image2.png)
 
 
-| Nombre de formulario en Español | Nombre | Nombre Corto | Codigo | Nombre de formulario | UID |
-|----------------------------------|--------|--------------|--------|----------------------|-----|
-| Prueba de VIH | HIVp_PAHO - HIV test | HIV test | HIV_PREV_PAHO_HIV_TEST | HIV test | yI631ZocQZf |
-| Prueba de VIH administrada | HIVp_PAHO - HIV test: administered | HIV test: administered | HIV_PREV_PAHO_HIV_TEST_ADMINISTERED | HIV test administered | Uy89FCvs6Ko |
-| Comentarios | HIVp_PAHO - HIV test: Comments | HIV test: Comments | HIV_PREV_PAHO_HIV_TEST_COMMENTS | Comments | Y1V9A8GpJiR |
-| Diagnóstico de VIH | HIVp_PAHO - HIV test: HIV diagnosis | HIV test: HIV diagnosis | HIV_PREV_PAHO_DIAGNOSTIC_HIV | HIV diagnosis | x6jeZuctqoM |
-| Auto-prueba de VIH realizada desde la última visita | HIVp_PAHO - HIV test: HIV self-test done since last visit | HIV test: HIV self-test done since last visit | HIV_PREV_PAHO_HIV_AUTOTEST_DONE | HIV self-test done since last visit | UpNgy0a6N6j |
-| Auto-prueba de VIH alguna vez realizada | HIVp_PAHO - HIV test: HIV self-test ever done | HIV test: HIV self-test ever done | HIV_PREV_PAHO_SELF_TEST_EVER | HIV self-test ever done | et5nDy6QyHY |
-| Prueba de VIH (A1) administrada | HIVp_PAHO - HIV test: HIV test (A1) administered | HIV test: HIV test (A1) administered | HIV_PREV_PAHO_HIV_TEST_A1_ADMINISTERED | HIV test (A1) administered | ktb9vupNQSr |
-| Resultado de la prueba de VIH (A1) | HIVp_PAHO - HIV test: HIV test (A1) result | HIV test: HIV test (A1) result | HIV_PREV_PAHO_HIV_TEST_A1_RESULT | HIV test (A1) result | jWvC0hTOW02 |
-| Prueba de VIH (A2) administrada | HIVp_PAHO - HIV test: HIV test (A2) administered | HIV test: HIV test (A2) administered | HIV_PREV_PAHO_HIV_TEST_A2_ADMINISTERED | HIV test (A2) administered | dB1PmlvfxXk |
-| Resultado de la prueba de VIH (A2) | HIVp_PAHO - HIV test: HIV test (A2) result | HIV test: HIV test (A2) result | HIV_PREV_PAHO_HIV_TEST_A2_RESULT | HIV test (A2) result | A2ulG8Vg1mt |
-| Prueba de VIH (A3) administrada | HIVp_PAHO - HIV test: HIV test (A3) administered | HIV test: HIV test (A3) administered | HIV_PREV_PAHO_HIV_TEST_A3_ADMINISTERED | HIV test (A3) administered | NSL3UEtFktr |
-| Resultado de la prueba de VIH (A3) | HIVp_PAHO - HIV test: HIV test (A3) result | HIV test: HIV test (A3) result | HIV_PREV_PAHO_HIV_TEST_A3_RESULT | HIV test (A3) result | Z92PDz4uIeL |
-| Resultado de la última auto-prueba | HIVp_PAHO - HIV test: Last self-test result | HIV test: Last self-test result | HIV_PREV_PAHO_HIV_AUTOTEST_RESULT | Last self-test result | om3jqon8nGL |
-| Modo de provisión de la prueba | HIVp_PAHO - HIV test: Mode of test provision | HIV test: Mode of test provision | HIV_PREV_PAHO_HIV_TEST_PROVISION | Mode of test provision | Y7Vjp8sip8b |
-| Resultado de la prueba de VIH | HIVp_PAHO - HIV test: result | HIV test: result | HIV_PREV_PAHO_HIV_TEST_RESULT | HIV test result | nWAGHq3v2XP |
-| Especificar otro modo de provisión de la prueba | HIVp_PAHO - HIV test: Specify other mode of test provision | HIV test: Specify other mode of test provision | HIV_PREV_PAHO_HIV_TEST_PROVISION_OTHER | Specify other mode of test provision | wPIN6bTE2D9 |
-| ¿Cuándo se realizó la última auto-prueba? | HIVp_PAHO - HIV test: When was the last self-test done? | HIV test: When was the last self-test done? | HIV_PREV_PAHO_HIV_AUTOTEST_MONTHS_TEST | When was the last self-test done? | BTTMxs6AMGI |
-| ¿Este establecimiento ofrece servicios de pruebas de VIH? | HIVp_PAHO - HIV testing service available | HIV testing service available | HIV_PREV_PAHO_HFP_HIV_TEST_AVAILABLE | Does this facility offer HIV testing services? | A5niMbKKYbS |
+| Nombre de formulario en Español                           | Nombre                                                     | Nombre Corto                                   | Codigo                                 | Nombre de formulario                           | UID         |
+|-----------------------------------------------------------|------------------------------------------------------------|------------------------------------------------|----------------------------------------|------------------------------------------------|-------------|
+| Prueba de VIH                                             | HIVp_PAHO - HIV test                                       | HIV test                                       | HIV_PREV_PAHO_HIV_TEST                 | HIV test                                       | yI631ZocQZf |
+| Prueba de VIH administrada                                | HIVp_PAHO - HIV test: administered                         | HIV test: administered                         | HIV_PREV_PAHO_HIV_TEST_ADMINISTERED    | HIV test administered                          | Uy89FCvs6Ko |
+| Comentarios                                               | HIVp_PAHO - HIV test: Comments                             | HIV test: Comments                             | HIV_PREV_PAHO_HIV_TEST_COMMENTS        | Comments                                       | Y1V9A8GpJiR |
+| Diagnóstico de VIH                                        | HIVp_PAHO - HIV test: HIV diagnosis                        | HIV test: HIV diagnosis                        | HIV_PREV_PAHO_DIAGNOSTIC_HIV           | HIV diagnosis                                  | x6jeZuctqoM |
+| Auto-prueba de VIH realizada desde la última visita       | HIVp_PAHO - HIV test: HIV self-test done since last visit  | HIV test: HIV self-test done since last visit  | HIV_PREV_PAHO_HIV_AUTOTEST_DONE        | HIV self-test done since last visit            | UpNgy0a6N6j |
+| Auto-prueba de VIH alguna vez realizada                   | HIVp_PAHO - HIV test: HIV self-test ever done              | HIV test: HIV self-test ever done              | HIV_PREV_PAHO_SELF_TEST_EVER           | HIV self-test ever done                        | et5nDy6QyHY |
+| Prueba de VIH (A1) administrada                           | HIVp_PAHO - HIV test: HIV test (A1) administered           | HIV test: HIV test (A1) administered           | HIV_PREV_PAHO_HIV_TEST_A1_ADMINISTERED | HIV test (A1) administered                     | ktb9vupNQSr |
+| Resultado de la prueba de VIH (A1)                        | HIVp_PAHO - HIV test: HIV test (A1) result                 | HIV test: HIV test (A1) result                 | HIV_PREV_PAHO_HIV_TEST_A1_RESULT       | HIV test (A1) result                           | jWvC0hTOW02 |
+| Prueba de VIH (A2) administrada                           | HIVp_PAHO - HIV test: HIV test (A2) administered           | HIV test: HIV test (A2) administered           | HIV_PREV_PAHO_HIV_TEST_A2_ADMINISTERED | HIV test (A2) administered                     | dB1PmlvfxXk |
+| Resultado de la prueba de VIH (A2)                        | HIVp_PAHO - HIV test: HIV test (A2) result                 | HIV test: HIV test (A2) result                 | HIV_PREV_PAHO_HIV_TEST_A2_RESULT       | HIV test (A2) result                           | A2ulG8Vg1mt |
+| Prueba de VIH (A3) administrada                           | HIVp_PAHO - HIV test: HIV test (A3) administered           | HIV test: HIV test (A3) administered           | HIV_PREV_PAHO_HIV_TEST_A3_ADMINISTERED | HIV test (A3) administered                     | NSL3UEtFktr |
+| Resultado de la prueba de VIH (A3)                        | HIVp_PAHO - HIV test: HIV test (A3) result                 | HIV test: HIV test (A3) result                 | HIV_PREV_PAHO_HIV_TEST_A3_RESULT       | HIV test (A3) result                           | Z92PDz4uIeL |
+| Resultado de la última auto-prueba                        | HIVp_PAHO - HIV test: Last self-test result                | HIV test: Last self-test result                | HIV_PREV_PAHO_HIV_AUTOTEST_RESULT      | Last self-test result                          | om3jqon8nGL |
+| Modo de provisión de la prueba                            | HIVp_PAHO - HIV test: Mode of test provision               | HIV test: Mode of test provision               | HIV_PREV_PAHO_HIV_TEST_PROVISION       | Mode of test provision                         | Y7Vjp8sip8b |
+| Resultado de la prueba de VIH                             | HIVp_PAHO - HIV test: result                               | HIV test: result                               | HIV_PREV_PAHO_HIV_TEST_RESULT          | HIV test result                                | nWAGHq3v2XP |
+| Especificar otro modo de provisión de la prueba           | HIVp_PAHO - HIV test: Specify other mode of test provision | HIV test: Specify other mode of test provision | HIV_PREV_PAHO_HIV_TEST_PROVISION_OTHER | Specify other mode of test provision           | wPIN6bTE2D9 |
+| ¿Cuándo se realizó la última auto-prueba?                 | HIVp_PAHO - HIV test: When was the last self-test done?    | HIV test: When was the last self-test done?    | HIV_PREV_PAHO_HIV_AUTOTEST_MONTHS_TEST | When was the last self-test done?              | BTTMxs6AMGI |
+| ¿Este establecimiento ofrece servicios de pruebas de VIH? | HIVp_PAHO - HIV testing service available                  | HIV testing service available                  | HIV_PREV_PAHO_HFP_HIV_TEST_AVAILABLE   | Does this facility offer HIV testing services? | A5niMbKKYbS |
 
 
 
@@ -192,28 +189,26 @@ Información relacionada a la profilaxis pre exposición (PrEP), si se le ha ent
 ![Visita](resources/images/image7.png)
 
 
-| Nombre de formulario en Español | Nombre | Nombre Corto | Codigo | Nombre de formulario | UID |
-|---------------------------------|--------|--------------|--------|----------------------|-----|
-| Trabajadoras sexuales femeninas | HIVp_PAHO - Pop estimation - PrEP eligible: Female sex workers | HIVp_PAHO - Pop estimation - PrEP eligible: FSW | HIV_PREV_PAHO_KPE_PREP_ELIGIBLE_SW | Female sex workers | jL8uUKNmT0M |
-| HSH (Hombres que tienen Sexo con Hombres) | HIVp_PAHO - Pop estimation - PrEP eligible: MSM | HIVp_PAHO - Pop estimation - PrEP eligible: MSM | HIV_PREV_PAHO_KPE_PREP_ELIGIBLE_MSM | MSM | oUb8ga6vRJ4 |
-| Mujeres transgénero | HIVp_PAHO - Pop estimation - PrEP eligible: Transgender women | HIVp_PAHO - Pop estimation - PrEP eligible: TGW | HIV_PREV_PAHO_KPE_PREP_ELIGIBLE_TGW | Transgedner women | Kq4cNZ6GNAy |
-| PrEP (Profilaxis Pre-Exposición) | HIVp_PAHO - PrEP | PrEP | HIV_PREV_PAHO_PREP_VISIT | PrEP | P1RfSZzzSEB |
-| ¿Ofrece este establecimiento servicios de PrEP? | HIVp_PAHO - PrEP service available | PrEP service available | HIV_PREV_PAHO_HFP_PREP_SERVICE_AVAILABLE | Does this facility offer PrEP services? | dWTjS1G9jbn |
-| Efecto adverso experimentado | HIVp_PAHO - PrEP: Adverse effect experienced | PrEP: adverse effect | HIV_PREV_PAHO_PREP_ADVERSE_EFFECT_EXPERIENCED | Adverse effect experienced | DPHeJgisI0u |
-| Comentarios | HIVp_PAHO - PrEP: Comments | PrEP: Comments | HIV_PREV_PAHO_PREP_COMMENTS | Comments | C0W8EEMUTfi |
-| Actualmente bajo PrEP | HIVp_PAHO - PrEP: Currently under PrEP | PrEP: Currently under PrEP | HIV_PREV_PAHO_PREP_ON_PREP | Currently under PrEP | jOtLAW0QLKh |
-| Experiencia con PrEP | HIVp_PAHO - PrEP: Experience with PrEP | PrEP: Experience with PrEP | HIV_PREV_PAHO_PREP_EXPERIENCE | Experience with PrEP | KLIPeOJ4gQx |
-| Formulación de PrEP administrada | HIVp_PAHO - PrEP: Formulation of PrEP delivered | PrEP: Formulation | HIV_PREV_PAHO_PREP_FORMULATION | Formulation of PrEP delivered | Sk5xiKRZF9P |
-| Posología | HIVp_PAHO - PrEP: Posology | PrEP: Posology | HIV_PREV_PAHO_PREP_DOSAGE | Posology | GExKSajen7T |
-| ¿La persona acepta PrEP? | HIVp_PAHO - PrEP: PrEP accepted | PrEP: Accepted | HIV_PREV_PAHO_PREP_ACCEPTED | Does the person accept PrEP? | n5xYJmCTQfd |
-| PrEP entregada/administrada | HIVp_PAHO - PrEP: PrEP delivered/administered | PrEP: PrEP delivered/administered | HIV_PREV_PAHO_PREP_DELIVERED_ADMINISTERED | PrEP delivered/administered | OmZkGo1gbRe |
-| Cantidad entregada | HIVp_PAHO - PrEP: Quantity delivered | PrEP: Quantity delivered | HIV_PREV_PAHO_PREP_QUANTITY | Quantity delivered | VPwI1rLi0qF |
-| Razón para la discontinuación/interrupción | HIVp_PAHO - PrEP: Reason for discontinuation/interruption | PrEP: Reason for discontinuation/interruption | HIV_PREV_PAHO_PREP_REASON_DISCONTINUATION | Reason for discontinuation/interruption | miqWcoHGmHr |
-| Especificar efecto adverso | HIVp_PAHO - PrEP: Specify adverse effect | PrEP: Specify adverse effect PREP | HIV_PREV_PAHO_PREP_ADVERSE_EFFECT | Specify adverse effect | aipA7rEraPQ |
-| Especificar otro | HIVp_PAHO - PrEP: Specify other adverse effect | PrEP: Specify other adverse effect | HIV_PREV_PAHO_PREP_ADVERSE_EFFECT_OTHER | Specify other | SYffAqPGAsr |
-| Especificar otro | HIVp_PAHO - PrEP:
-
-
+| Nombre de formulario en Español                 | Nombre                                                         | Nombre Corto                                    | Codigo                                        | Nombre de formulario                    | UID         |
+|-------------------------------------------------|----------------------------------------------------------------|-------------------------------------------------|-----------------------------------------------|-----------------------------------------|-------------|
+| Trabajadoras sexuales femeninas                 | HIVp_PAHO - Pop estimation - PrEP eligible: Female sex workers | HIVp_PAHO - Pop estimation - PrEP eligible: FSW | HIV_PREV_PAHO_KPE_PREP_ELIGIBLE_SW            | Female sex workers                      | jL8uUKNmT0M |
+| HSH (Hombres que tienen Sexo con Hombres)       | HIVp_PAHO - Pop estimation - PrEP eligible: MSM                | HIVp_PAHO - Pop estimation - PrEP eligible: MSM | HIV_PREV_PAHO_KPE_PREP_ELIGIBLE_MSM           | MSM                                     | oUb8ga6vRJ4 |
+| Mujeres transgénero                             | HIVp_PAHO - Pop estimation - PrEP eligible: Transgender women  | HIVp_PAHO - Pop estimation - PrEP eligible: TGW | HIV_PREV_PAHO_KPE_PREP_ELIGIBLE_TGW           | Transgedner women                       | Kq4cNZ6GNAy |
+| PrEP (Profilaxis Pre-Exposición)                | HIVp_PAHO - PrEP                                               | PrEP                                            | HIV_PREV_PAHO_PREP_VISIT                      | PrEP                                    | P1RfSZzzSEB |
+| ¿Ofrece este establecimiento servicios de PrEP? | HIVp_PAHO - PrEP service available                             | PrEP service available                          | HIV_PREV_PAHO_HFP_PREP_SERVICE_AVAILABLE      | Does this facility offer PrEP services? | dWTjS1G9jbn |
+| Efecto adverso experimentado                    | HIVp_PAHO - PrEP: Adverse effect experienced                   | PrEP: adverse effect                            | HIV_PREV_PAHO_PREP_ADVERSE_EFFECT_EXPERIENCED | Adverse effect experienced              | DPHeJgisI0u |
+| Comentarios                                     | HIVp_PAHO - PrEP: Comments                                     | PrEP: Comments                                  | HIV_PREV_PAHO_PREP_COMMENTS                   | Comments                                | C0W8EEMUTfi |
+| Actualmente bajo PrEP                           | HIVp_PAHO - PrEP: Currently under PrEP                         | PrEP: Currently under PrEP                      | HIV_PREV_PAHO_PREP_ON_PREP                    | Currently under PrEP                    | jOtLAW0QLKh |
+| Experiencia con PrEP                            | HIVp_PAHO - PrEP: Experience with PrEP                         | PrEP: Experience with PrEP                      | HIV_PREV_PAHO_PREP_EXPERIENCE                 | Experience with PrEP                    | KLIPeOJ4gQx |
+| Formulación de PrEP administrada                | HIVp_PAHO - PrEP: Formulation of PrEP delivered                | PrEP: Formulation                               | HIV_PREV_PAHO_PREP_FORMULATION                | Formulation of PrEP delivered           | Sk5xiKRZF9P |
+| Posología                                       | HIVp_PAHO - PrEP: Posology                                     | PrEP: Posology                                  | HIV_PREV_PAHO_PREP_DOSAGE                     | Posology                                | GExKSajen7T |
+| ¿La persona acepta PrEP?                        | HIVp_PAHO - PrEP: PrEP accepted                                | PrEP: Accepted                                  | HIV_PREV_PAHO_PREP_ACCEPTED                   | Does the person accept PrEP?            | n5xYJmCTQfd |
+| PrEP entregada/administrada                     | HIVp_PAHO - PrEP: PrEP delivered/administered                  | PrEP: PrEP delivered/administered               | HIV_PREV_PAHO_PREP_DELIVERED_ADMINISTERED     | PrEP delivered/administered             | OmZkGo1gbRe |
+| Cantidad entregada                              | HIVp_PAHO - PrEP: Quantity delivered                           | PrEP: Quantity delivered                        | HIV_PREV_PAHO_PREP_QUANTITY                   | Quantity delivered                      | VPwI1rLi0qF |
+| Razón para la discontinuación/interrupción      | HIVp_PAHO - PrEP: Reason for discontinuation/interruption      | PrEP: Reason for discontinuation/interruption   | HIV_PREV_PAHO_PREP_REASON_DISCONTINUATION     | Reason for discontinuation/interruption | miqWcoHGmHr |
+| Especificar efecto adverso                      | HIVp_PAHO - PrEP: Specify adverse effect                       | PrEP: Specify adverse effect PREP               | HIV_PREV_PAHO_PREP_ADVERSE_EFFECT             | Specify adverse effect                  | aipA7rEraPQ |
+| Especificar otro                                | HIVp_PAHO - PrEP: Specify other adverse effect                 | PrEP: Specify other adverse effect              | HIV_PREV_PAHO_PREP_ADVERSE_EFFECT_OTHER       | Specify other                           | SYffAqPGAsr |
+| Especificar otro                                | HIVp_PAHO - PrEP:                                              |                                                 |                                               |                                         |             |
 
 **PEP:**
 
@@ -224,18 +219,18 @@ En esta sección se registra si la persona recibió el profiláctico postexposic
 ![Visita](resources/images/image1.png)
 
 
-| Nombre de formulario en Español | Nombre | Nombre Corto | Codigo | Nombre de formulario | UID |
-|----------------------------------|--------|--------------|--------|----------------------|-----|
-| PEP (Profilaxis Post-Exposición) | HIVp_PAHO - PEP | PEP | HIV_PREV_PAHO_PEP_VISIT | PEP | sU70bInkUno |
-| ¿Ofrece este establecimiento servicios de PEP? | HIVp_PAHO - PEP service available | PEP service available | HIV_PREV_PAHO_HFP_PEP_SERVICE_AVAILABLE | Does this facility offer PEP services? | BMbr3ODJdJd |
-| Comentarios | HIVp_PAHO - PEP: Comments | PEP: Comments | HIV_PREV_PAHO_PEP_COMMENTS | Comments | rOEsMvFfkc5 |
-| Retraso entre la exposición y la visita | HIVp_PAHO - PEP: Delay between exposition and visit | PEP: Delay between exposition and visit | HIV_PREV_PAHO_PEP_DELAY_AFTER_EXPOSITION | Delay between exposition and visit | EZY5qAkPaUK |
-| Exposición | HIVp_PAHO - PEP: Exposure | PEP: Exposure | HIV_PREV_PAHO_PEP_EXPOSURE | Exposure | Tm3IdU6qHRD |
-| Resultado del control de la prueba de VIH | HIVp_PAHO - PEP: HIV test control result | PEP: HIV test control result | HIV_PREV_PAHO_PEP_HIV_TEST_CONTROL_RESULT | HIV test control result | wnXl8BHhwbF |
-| Naturaleza no ocupacional | HIVp_PAHO - PEP: Non-occupational nature | PEP: Non-occupational nature | HIV_PREV_PAHO_PEP_NON_OCCUPATIONAL_NATURE | Non-occupational nature | TgX2dztWmim |
-| ¿La persona acepta PEP? | HIVp_PAHO - PEP: PEP accepted | PEP: Accepted | HIV_PREV_PAHO_PEP_ACCEPTED | Does the person accept PEP? | r3XNaIvfGoG |
-| El curso de profilaxis ha sido tomado correctamente y completamente | HIVp_PAHO - PEP: Prophilaxis course has been correctly and completely taken | PEP: prophilaxis correctly taken | HIV_PREV_PAHO_PEP_COMPLETE | Prophilaxis course has been correctly and completely taken | rEbPnmHYszx |
-| Tipo de visita | HIVp_PAHO - PEP: Type of visit | PEP: Type of visit | HIV_PREV_PAHO_PEP_TYPE_VISIT | Type of visit | U5dugYmQmWz |
+| Nombre de formulario en Español                                     | Nombre                                                                      | Nombre Corto                            | Codigo                                    | Nombre de formulario                                       | UID         |
+|---------------------------------------------------------------------|-----------------------------------------------------------------------------|-----------------------------------------|-------------------------------------------|------------------------------------------------------------|-------------|
+| PEP (Profilaxis Post-Exposición)                                    | HIVp_PAHO - PEP                                                             | PEP                                     | HIV_PREV_PAHO_PEP_VISIT                   | PEP                                                        | sU70bInkUno |
+| ¿Ofrece este establecimiento servicios de PEP?                      | HIVp_PAHO - PEP service available                                           | PEP service available                   | HIV_PREV_PAHO_HFP_PEP_SERVICE_AVAILABLE   | Does this facility offer PEP services?                     | BMbr3ODJdJd |
+| Comentarios                                                         | HIVp_PAHO - PEP: Comments                                                   | PEP: Comments                           | HIV_PREV_PAHO_PEP_COMMENTS                | Comments                                                   | rOEsMvFfkc5 |
+| Retraso entre la exposición y la visita                             | HIVp_PAHO - PEP: Delay between exposition and visit                         | PEP: Delay between exposition and visit | HIV_PREV_PAHO_PEP_DELAY_AFTER_EXPOSITION  | Delay between exposition and visit                         | EZY5qAkPaUK |
+| Exposición                                                          | HIVp_PAHO - PEP: Exposure                                                   | PEP: Exposure                           | HIV_PREV_PAHO_PEP_EXPOSURE                | Exposure                                                   | Tm3IdU6qHRD |
+| Resultado del control de la prueba de VIH                           | HIVp_PAHO - PEP: HIV test control result                                    | PEP: HIV test control result            | HIV_PREV_PAHO_PEP_HIV_TEST_CONTROL_RESULT | HIV test control result                                    | wnXl8BHhwbF |
+| Naturaleza no ocupacional                                           | HIVp_PAHO - PEP: Non-occupational nature                                    | PEP: Non-occupational nature            | HIV_PREV_PAHO_PEP_NON_OCCUPATIONAL_NATURE | Non-occupational nature                                    | TgX2dztWmim |
+| ¿La persona acepta PEP?                                             | HIVp_PAHO - PEP: PEP accepted                                               | PEP: Accepted                           | HIV_PREV_PAHO_PEP_ACCEPTED                | Does the person accept PEP?                                | r3XNaIvfGoG |
+| El curso de profilaxis ha sido tomado correctamente y completamente | HIVp_PAHO - PEP: Prophilaxis course has been correctly and completely taken | PEP: prophilaxis correctly taken        | HIV_PREV_PAHO_PEP_COMPLETE                | Prophilaxis course has been correctly and completely taken | rEbPnmHYszx |
+| Tipo de visita                                                      | HIVp_PAHO - PEP: Type of visit                                              | PEP: Type of visit                      | HIV_PREV_PAHO_PEP_TYPE_VISIT              | Type of visit                                              | U5dugYmQmWz |
 
 
 
@@ -568,9 +563,6 @@ Como se describe en la sección de la etapa de “Visitas”, hay reglas de prog
 | VIH - Población clave inscrita - TS  | (Trabajadoras sexuales)               | FrasFhzQeYC |
 | VIH - Población clave inscrita - TW  | (Mujeres Trans)                       | bDbeUXDLX0K |
 
-
-
-
 ##  Paneles de mando
 
 El toolkit cuenta con un tablero de mando prediseñado, pudiéndose modificar según las necesidades de la implementación. El tablero está dividido en secciones temáticas:
@@ -617,7 +609,7 @@ Todos los sistemas de información de salud deben tener protocolos robustos de s
 
 Donde la seguridad y el potencial de acceso malicioso son muy altos, no se aconseja la recolección rutinaria de información sobre poblaciones clave. De manera similar, antes de capturar datos personalmente identificables como el nombre del cliente, fecha de nacimiento y otros datos indirectamente identificables, se debe realizar una evaluación de riesgos y revisión de seguridad de los sistemas electrónicos. Todos los usuarios deberan firmar un documento de confidencialidad de datos.
 
-##Adaptación de la estructura del programa
+## Adaptación de la estructura del programa
 
 La estructura del Rastreador de Prevención del VIH es mayormente plana, con solo una etapa principal repetible para registrar actividades para cualquier tipo de visita de prevención. Esta estructura intencionalmente simplificada permite una mayor flexibilidad para la adaptación y personalización local. Por ejemplo:
 

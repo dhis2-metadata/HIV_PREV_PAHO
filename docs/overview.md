@@ -1,12 +1,12 @@
-# HIV Prevention PAHO
+# Toolkit de Prevención de VIH para OPS
 
 ## Release Note
 
-[Release Note](#hiv-cs-release-note)
+[Release Note](#hiv-prev-paho-release-note)
 
 ## Design
 
-[Version 1.0.0](#hiv-cs-design)
+[Version 1.0.0](#hiv-prev-paho-design)
 
 ## Installation
 
