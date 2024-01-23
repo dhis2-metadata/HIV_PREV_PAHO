@@ -87,9 +87,16 @@ El proceso de actualizar un paquete existente a una versión más reciente en un
 
 ## Importando metadatos
 
-El archivo .json de metadatos se importa a través de la aplicación [Importar/Exportar](https://docs.dhis2.org/master/en/user/html/import_export.html) de DHIS2. Se recomienda utilizar la función "prueba en seco" para identificar problemas antes de intentar realizar una importación real de los metadatos. Si la importación en seco informa problemas o conflictos, consulte la [sección de conflictos de importación](#manejo-de-conflictos-de-importación) a continuación.
+El archivo .json de metadatos se encuentra en 2 idiomas de base: Inglés y Español. Los mismos pueden encontrarse en la carpeta [config](../config) del directorio raíz.
 
-Si la importación en seco/validación funciona sin errores, intente importar los metadatos. Si la importación tiene éxito sin errores, puede proceder a [configurar](#configuración) el módulo. En algunos casos, los conflictos de importación o problemas no se muestran durante la "prueba en seco", sino que aparecen cuando se intenta la importación real. En este caso, el resumen de importación enumerará cualquier error que deba resolverse.
+Cada archivo contiene su idioma de base identificado en el nombre, por ejemplo "xxxxxx-**es**.json", y su traducción al otro idioma de base, en este caso, al Inglés.
+
+> NOTA: Para una completa traducción del sistema y programa al idioma de base preferido, por ejemplo Español, se recomienda importar el arhcivo "xxxxxx-**es**.json"
+
+
+El archivo .json de metadatos se importa a través de la aplicación [Importar/Exportar](https://docs.dhis2.org/master/en/user/html/import_export.html) de DHIS2. Se recomienda utilizar la función "Start dry run" para identificar problemas antes de intentar realizar una importación real de los metadatos. Si la importación en "dry run" informa problemas o conflictos, consulte la [sección de conflictos de importación](#manejo-de-conflictos-de-importación) a continuación.
+
+Si la importación en dry run/validación funciona sin errores, intente importar los metadatos. Si la importación tiene éxito sin errores, puede proceder a [configurar](#configuración) el módulo. En algunos casos, los conflictos de importación o problemas no se muestran durante la importación en "dry run", sino que aparecen cuando se intenta la importación real. En este caso, el resumen de importación enumerará cualquier error que deba resolverse.
 
 ### Manejo de conflictos de importación
 
